@@ -46,8 +46,7 @@ class Mentor():
         temp_dict = {}
         for i in mentors:
             if i.city == "Miskolc":
-                temp_dict["first_name"] = i.first_name
-                temp_dict["last_name"] = i.last_name
+                temp_dict["nick_name"] = i.nick_name
                 return_list.append(temp_dict)
                 temp_dict = {}
         return return_list
