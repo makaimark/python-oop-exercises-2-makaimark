@@ -44,8 +44,9 @@ class Mentor():
         mentors = Database.get_mentors()
         return_list = []
         temp_dict = {}
+        city = "Miskolc"
         for i in mentors:
-            if i.city == "Miskolc":
+            if i.city == city:
                 temp_dict["nick_name"] = i.nick_name
                 return_list.append(temp_dict)
                 temp_dict = {}

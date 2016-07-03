@@ -22,8 +22,9 @@ class Applicant():
         from db import Database
         applicants = Database.get_applicants()
         temp_dict = {}
+        name = "Carol"
         for i in applicants:
-            if i.first_name == "Carol":
+            if i.first_name == name:
                 temp_dict["full_name"] = str(i.first_name + " " + i.last_name)
         return [temp_dict]
 
@@ -38,8 +39,9 @@ class Applicant():
         applicants = Database.get_applicants()
         return_list = []
         temp_dict = {}
+        email = "@adipiscingenimmi.edu"
         for i in applicants:
-            if '@adipiscingenimmi.edu' in i.email:
+            if email in i.email:
                 temp_dict["full_name"] = str(i.first_name + " " + i.last_name)
                 return_list.append(temp_dict)
                 temp_dict = {}
@@ -70,7 +72,6 @@ class Applicant():
         temp_dict = {}
         new_applicant = [11, "Markus", "Schaffarzyk", "003620/725-2666", "djnovus@groovecoverage.com", 54823]
         applicants.append(Applicant(new_applicant))
-        # setattr(Database, Database.applicants_data[new_applicant[0]], new_applicant)     # ???
         for i in applicants:
             if i.id == new_applicant[0]:
                 temp_dict["id"] = int(i.id)
@@ -90,14 +91,15 @@ class Applicant():
     def _7_updating_data(cls):
         from db import Database
         temp_dict = {}
+        new_phone_number = "003670/223-7459"
         applicants = Database.get_applicants()
-        counter = 0
         for i in applicants:
             if i.first_name == "Jemima" and i.last_name == "Foreman":
-                # setattr(Database, Database.applicants_data[counter][3], "003670/223-7459")
-                temp_dict["phone_number"] = "003670/223-7459"
+                i.phone_number = new_phone_number
+        for i in applicants:
+            if i.first_name == "Jemima" and i.last_name == "Foreman":
+                temp_dict["phone_number"] = i.phone_number
                 return [temp_dict]
-            counter += 1
 
     # Delete lines from the applicants_data, based on a filter condition
     # Story: Arsenio, an applicant called us, that he and his friend applied to Codecool.
@@ -110,12 +112,11 @@ class Applicant():
     def _8_deleting_applicants(cls):
         from db import Database
         applicants = Database.get_applicants()
-        counter = 0
         result = 0
         for i in applicants:
             if "mauriseu.net" in i.email:
+                applicants.remove(i)
+        for i in applicants:
+            if "mauriseu.net" in i.email:
                 result += 1
-                del(i)
-                # del(Database.applicants_data[counter])
-            counter += 1
         return result
