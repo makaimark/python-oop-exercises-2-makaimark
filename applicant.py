@@ -68,9 +68,9 @@ class Applicant():
         from db import Database
         applicants = Database.get_applicants()
         temp_dict = {}
-        return_list = []
         new_applicant = [11, "Markus", "Schaffarzyk", "003620/725-2666", "djnovus@groovecoverage.com", 54823]
-        Database.applicants_data.append(new_applicant)  # Nem appendel :(
+        applicants.append(Applicant(new_applicant))
+        # setattr(Database, Database.applicants_data[new_applicant[0]], new_applicant)     # ???
         for i in applicants:
             if i.id == new_applicant[0]:
                 temp_dict["id"] = int(i.id)
@@ -79,8 +79,7 @@ class Applicant():
                 temp_dict["phone_number"] = i.phone_number
                 temp_dict["email"] = i.email
                 temp_dict["application_code"] = int(i.application_code)
-                return_list.append(temp_dict)
-        return return_list
+        return [temp_dict]
 
     # Update an Applicant in the applicants_data, and returns a filtered dictionary list for checking.
     # Story: Jemima Foreman, an applicant called us, that her phone number changed to: 003670/223-7459
@@ -90,7 +89,16 @@ class Applicant():
     @classmethod
     def _7_updating_data(cls):
         from db import Database
-        pass
+        temp_dict = {}
+        applicants = Database.get_applicants()
+        counter = 0
+        for i in applicants:
+            if i.first_name == "Jemima" and i.last_name == "Foreman":
+                # setattr(Database, Database.applicants_data[counter][3], "003670/223-7459")
+                temp_dict["phone_number"] = "003670/223-7459"
+                return [temp_dict]
+            counter += 1
+
     # Delete lines from the applicants_data, based on a filter condition
     # Story: Arsenio, an applicant called us, that he and his friend applied to Codecool.
     # They both want to cancel the process, because they got an investor for the site they run: mauriseu.net
@@ -100,4 +108,14 @@ class Applicant():
     # example: 2
     @classmethod
     def _8_deleting_applicants(cls):
-        pass
+        from db import Database
+        applicants = Database.get_applicants()
+        counter = 0
+        result = 0
+        for i in applicants:
+            if "mauriseu.net" in i.email:
+                result += 1
+                del(i)
+                # del(Database.applicants_data[counter])
+            counter += 1
+        return result
