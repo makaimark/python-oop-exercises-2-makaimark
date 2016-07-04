@@ -21,10 +21,13 @@ class Applicant():
     def _4_specific_applicant_by_first_name(cls):
         applicants = Applicant.get_all()
         temp_dict = {}
+        return_list = []
         name = "Carol"
         for i in applicants:
             if i.first_name == name:
                 temp_dict["full_name"] = str(i.first_name + " " + i.last_name)
+                return_list.append(temp_dict)
+                temp_dict = {}
         return [temp_dict]
 
     # Return the full name, as a full_name property of all the applicants, whose email ends with '@adipiscingenimmi.edu'
