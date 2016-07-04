@@ -22,8 +22,7 @@ class Mentor():
     # }, ...]
     @classmethod
     def _1_list_mentors(cls):
-        from db import Database
-        mentors = Database.get_mentors()
+        mentors = Mentor.get_all()
         return_list = []
         temp_dict = {}
         for i in mentors:
@@ -40,8 +39,7 @@ class Mentor():
     # }, ...]
     @classmethod
     def _2_list_mentors_from_miskolc(cls):
-        from db import Database
-        mentors = Database.get_mentors()
+        mentors = Mentor.get_all()
         return_list = []
         temp_dict = {}
         city = "Miskolc"
@@ -57,8 +55,7 @@ class Mentor():
     # example: 927
     @classmethod
     def _3_greatest_favourite_number(cls):
-        from db import Database
-        mentors = Database.get_mentors()
+        mentors = Mentor.get_all()
         return_number = 0
         for i in mentors:
             if i.favourite_number is not None:

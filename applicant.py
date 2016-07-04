@@ -19,8 +19,7 @@ class Applicant():
     # }, ...]
     @classmethod
     def _4_specific_applicant_by_first_name(cls):
-        from db import Database
-        applicants = Database.get_applicants()
+        applicants = Applicant.get_all()
         temp_dict = {}
         name = "Carol"
         for i in applicants:
@@ -35,8 +34,7 @@ class Applicant():
     # }, ...]
     @classmethod
     def _5_specific_applicant_by_email_domain(cls):
-        from db import Database
-        applicants = Database.get_applicants()
+        applicants = Applicant.get_all()
         return_list = []
         temp_dict = {}
         email = "@adipiscingenimmi.edu"
@@ -67,8 +65,7 @@ class Applicant():
     # }]
     @classmethod
     def _6_inserting_a_new_applicant(cls):
-        from db import Database
-        applicants = Database.get_applicants()
+        applicants = Applicant.get_all()
         temp_dict = {}
         new_applicant = [11, "Markus", "Schaffarzyk", "003620/725-2666", "djnovus@groovecoverage.com", 54823]
         applicants.append(Applicant(new_applicant))
@@ -89,10 +86,9 @@ class Applicant():
     # }]
     @classmethod
     def _7_updating_data(cls):
-        from db import Database
+        applicants = Applicant.get_all()
         temp_dict = {}
         new_phone_number = "003670/223-7459"
-        applicants = Database.get_applicants()
         for i in applicants:
             if i.first_name == "Jemima" and i.last_name == "Foreman":
                 i.phone_number = new_phone_number
@@ -110,8 +106,7 @@ class Applicant():
     # example: 2
     @classmethod
     def _8_deleting_applicants(cls):
-        from db import Database
-        applicants = Database.get_applicants()
+        applicants = Applicant.get_all()
         result = 0
         for i in applicants:
             if "mauriseu.net" in i.email:
