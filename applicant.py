@@ -28,7 +28,7 @@ class Applicant():
                 temp_dict["full_name"] = str(i.first_name + " " + i.last_name)
                 return_list.append(temp_dict)
                 temp_dict = {}
-        return [temp_dict]
+        return return_list
 
     # Return the full name, as a full_name property of all the applicants, whose email ends with '@adipiscingenimmi.edu'
     # returns: list of dictionaries
